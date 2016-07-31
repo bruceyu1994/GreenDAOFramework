@@ -49,3 +49,7 @@ captures/
 
 # Keystore files
 *.jks
+
+# bruceyu_rsa
+bruceyu_rsa
+bruceyu_rsa.pub

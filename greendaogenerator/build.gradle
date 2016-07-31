@@ -1,0 +1,23 @@
+apply plugin: 'application'
+apply plugin: 'java'
+
+mainClassName = "com.greendao.GreenDAOGenerator"
+
+//使用相对路径，这样换到任何一台电脑都不用再改了
+def outputDir = "../app/src/main/java-gen"
+
+//自动创建生成路径，不用手动创建java-gen文件夹
+task createDocs {
+    def docs = file(outputDir)
+    docs.mkdirs()
+}
+
+//运行时传递点的输出路径参数，不过要在Gradle面板中运行，双击run即可，否则会报args数组越界的异常
+run {
+    args outputDir
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'org.greenrobot:greendao-generator:3.0.0'  //greendao-generator依赖
+}

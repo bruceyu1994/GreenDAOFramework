@@ -34,56 +34,106 @@ public class GreenDAOGenerator {
 
     public static void addTasks(Schema schema) {
         // 一个实体（类）就关联到数据库中的一张表，此处表名为「Tasks」（既类名）
-        Entity tasks = schema.addEntity("Tasks");
+        Entity task = schema.addEntity("Task");
+
+        //为实体添加注解
+        task.setJavaDoc("任务类，对应数据库中的一张任务表，存储护士的任务列表");
+//        task.setCodeBeforeClass("@Awesome");
+//        task.addIntProperty("counter")
+//                .codeBeforeField("@SerializedName(\"the-number-of-things\")")
+//                .javaDocGetterAndSetter("The total count");
+
         // 你也可以重新给表命名
         // tasks.setTableName("NODE");
         // greenDAO 会自动根据实体类的属性值来创建表字段，并赋予默认值
         // 接下来你便可以设置表中的字段：
         //主键ID
-        tasks.addIdProperty();
+        task.addIdProperty();
         // 病区ID
-        tasks.addLongProperty("BQID");
+        task.addLongProperty("BQID").codeBeforeField("//病区ID").javaDocGetter("获取病区ID")
+                .javaDocSetter("设置病区ID");
         // 责任护士ID
-        tasks.addLongProperty("USERID");
-        // 任务类型 1:输血； 2：皮试； 3：静滴； 4：静注； 5：化验； 6：其他药品
-        tasks.addIntProperty("RWLX");
+        task.addLongProperty("USERID").codeBeforeField("//责任护士ID")
+                .javaDocSetter("设置责任护士ID").javaDocGetter("获取责任护士ID");
+        // 任务类型 :输血；皮试；静滴；静注；化验；其他药品
+        task.addIntProperty("RWLX")
+                .codeBeforeField("//任务类型 :输血；皮试；静滴；静注；化验；其他药品")
+            .javaDocGetter("获取任务类型").javaDocSetter("设置任务类型");
         // 任务名
-        tasks.addStringProperty("RWM");
+        task.addStringProperty("RWM").codeBeforeField("//任务名")
+                .javaDocGetter("获取任务名")
+                .javaDocSetter("设置任务名");
         // 住院号
-        tasks.addStringProperty("ZYH");
+        task.addStringProperty("ZYH").codeBeforeField("//住院号")
+                .javaDocGetter("获取住院号")
+            .javaDocSetter("设置住院号");
         // 任务内容
-        tasks.addStringProperty("RWNR");
+        task.addStringProperty("RWNR").codeBeforeField("//任务内容")
+                .javaDocGetter("获取任务内容")
+                .javaDocSetter("设置任务内容");
         // 任务条码
-        tasks.addStringProperty("TXM");
+        task.addStringProperty("TXM").codeBeforeField("//任务条码")
+                .javaDocGetter("获取任务条码")
+                .javaDocSetter("设置任务条码");
         // 任务时间
-        tasks.addDateProperty("YZSJ");
+        task.addDateProperty("YZSJ").codeBeforeField("//任务时间")
+                .javaDocGetter("获取任务时间")
+                .javaDocSetter("设置任务时间");
         // 任务显示时间差
-        tasks.addDateProperty("RWXSSJC");
+        task.addDateProperty("RWXSSJC").codeBeforeField("//任务显示时间差")
+                .javaDocGetter("获取任务显示时间差")
+                .javaDocSetter("设置任务显示时间差");
         // 任务状态: 有哪些？
-        tasks.addStringProperty("RWZT");
+        task.addStringProperty("RWZT").codeBeforeField("//任务状态: 有哪些？")
+                .javaDocGetter("获取任务状态")
+                .javaDocSetter("设置任务状态");
         // 任务级别:似乎跟任务类型相似
-        tasks.addIntProperty("RWJB");
+        task.addIntProperty("RWJB").codeBeforeField("//任务级别:似乎跟任务类型相似")
+                .javaDocGetter("获取任务级别")
+                .javaDocSetter("设置任务级别");
         // 任务停止flag(状态标志)
-        tasks.addBooleanProperty("RRTZ");
+        task.addBooleanProperty("RRTZ").codeBeforeField("//任务停止flag(状态标志)")
+                .javaDocGetter("获取状态标志")
+                .javaDocSetter("设置状态标志");
         // 执行人
-        tasks.addStringProperty("ZZR");
+        task.addStringProperty("ZZR").codeBeforeField("//执行人")
+                .javaDocGetter("获取住院号")
+                .javaDocSetter("设置住院号");
         // 执行时间
-        tasks.addDateProperty("ZZSJ");
+        task.addDateProperty("ZZSJ").codeBeforeField("//执行时间")
+                .javaDocGetter("获取执行人")
+                .javaDocSetter("设置执行人");
         // 执行结果
-        tasks.addStringProperty("ZZJG");
+        task.addStringProperty("ZZJG").codeBeforeField("//执行结果")
+                .javaDocGetter("获取执行结果")
+                .javaDocSetter("设置执行结果");
         // 审核人
-        tasks.addStringProperty("SHR");
+        task.addStringProperty("SHR").codeBeforeField("//审核人")
+                .javaDocGetter("获取审核人")
+                .javaDocSetter("设置审核人");
         // 审核时间
-        tasks.addDateProperty("SHSJ");
+        task.addDateProperty("SHSJ").codeBeforeField("//审核时间")
+                .javaDocGetter("获取审核时间")
+                .javaDocSetter("设置审核时间");
         // 审核结果
-        tasks.addStringProperty("SHJG");
+        task.addStringProperty("SHJG").codeBeforeField("//审核结果")
+                .javaDocGetter("获取审核结果")
+                .javaDocSetter("设置审核结果");
         // 病人姓名
-        tasks.addStringProperty("BRXM");
+        task.addStringProperty("BRXM").codeBeforeField("//病人姓名")
+                .javaDocGetter("获取病人姓名")
+                .javaDocSetter("设置病人姓名");
         // 病人性别
-        tasks.addStringProperty("BRXB");
+        task.addStringProperty("BRXB").codeBeforeField("//病人性别")
+                .javaDocGetter("获取病人性别")
+                .javaDocSetter("设置病人性别");
         // 病人年龄
-        tasks.addIntProperty("BRNL");
+        task.addIntProperty("BRNL").codeBeforeField("//病人年龄")
+                .javaDocGetter("获取病人年龄")
+                .javaDocSetter("设置病人年龄");
         // 提交状态  0：未提交； 1:已提交
-        tasks.addIntProperty("TJZT");
+        task.addIntProperty("TJZT").codeBeforeField("//提交状态  0：未提交； 1:已提交")
+                .javaDocGetter("获取提交状态")
+                .javaDocSetter("设置提交状态");
     }
 }

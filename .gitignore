@@ -53,3 +53,6 @@ captures/
 # bruceyu_rsa
 bruceyu_rsa
 bruceyu_rsa.pub
+
+# add by myself
+.idea/

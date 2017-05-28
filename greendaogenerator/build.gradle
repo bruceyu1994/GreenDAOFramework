@@ -1,3 +1,5 @@
+import com.sun.org.apache.xalan.internal.xsltc.cmdline.Compile
+
 apply plugin: 'application'
 apply plugin: 'java'
 
@@ -10,6 +12,10 @@ def outputDir = "../app/src/main/java-gen"
 task createDocs {
     def docs = file(outputDir)
     docs.mkdirs()
+}
+
+tasks.withType(Compile) {
+    options.encoding = "UTF-8"
 }
 
 //运行时传递点的输出路径参数，不过要在Gradle面板中运行，双击run即可，否则会报args数组越界的异常
